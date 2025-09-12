@@ -62,11 +62,15 @@ docker --version
 
 docker run hello-world
 
-docker run -it ubuntu bash
+docker run --name ubuntu_container -it ubuntu bash
 
-docker run -d -o 8080:80 nginx
+docker run --name nginx_server -d -o 8080:80 nginx
 
-docker run -d -o 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpassword mysql 
+docker run --name mysql_server -dp 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpassword mysql
+
+docker ps
+
+ 
 ```
 
 
