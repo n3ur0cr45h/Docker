@@ -54,7 +54,22 @@ D1.5 - Diferença entre VM e Contêiner
  > | Execução de múltiplos SOs                      | Execução rápida de aplicações isoladas / microserviços |
  > | Usa hypervisores (VirtualBox, VMware, Hyper-V) | Usa container engine (Docker, containerd) |   
 
-D1.6 - Projetos Iniciais 
+D1.6 - Primeiros Comandos 
+  
+
+```
+docker --version
+
+docker run hello-world
+
+docker run -it ubuntu bash
+
+docker run -d -o 8080:80 nginx
+
+docker run -d -o 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpassword mysql 
+```
+
+
 
 </div> 
 </details>
