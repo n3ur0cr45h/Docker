@@ -37,26 +37,46 @@ D1.3 - Componentes do Docker
  > - Docker Compose: Gerenciamento de Múltiplos Contêineres;
  > - Docker Desktop: Interface gráfica e ambiente completo para desenvolvimento;
  > - Docker Hub / Registry: Repositório de imagens Docker;
- > - containerd / runc: Execução de Contêineres em baixo nível; 
+ > - containerd / runc: Execução de Contêineres em baixo nível. 
 
 D1.4 - Diferença entre Docker Desktop e Docker Engine  
  > - Docker Desktop: Desenvolvimento Local em Windows /macOS - Possui GUI;
- > - Docker Engine: Núcleo do Docker, roda direto no Linux sem virtualizar - ambientes de produção, servidores e Linux -, apenas CLI;
+ > - Docker Engine: Núcleo do Docker, roda direto no Linux sem virtualizar - ambientes de produção, servidores e Linux -, apenas CLI.
 
 D1.5 - Diferença entre VM e Contêiner  
 
- > | Virtual Machine                                | Contêiner                                |
- > |------------------------------------------------|------------------------------------------|
- > |Isolamento Total - Sistema Operacional Completo | Isolamento Parcial - Usa o Kernel do Host|
- > | Ocupa mais memória e CPU                       | Usa menos recursos                       |
- > | Inicialização lenta (Minutos)                  | Inicialização Rápida (segundos / milissegundos) |
- > | Imagens são Grandes (GBs)                      | Imagens Pequenas (MBs ou poucos GBs)      |
+ > | Virtual Machine                                | Contêiner                                              |
+ > |------------------------------------------------|--------------------------------------------------------|
+ > |Isolamento Total - Sistema Operacional Completo | Isolamento Parcial - Usa o Kernel do Host              |
+ > | Ocupa mais memória e CPU                       | Usa menos recursos                                     |
+ > | Inicialização lenta (Minutos)                  | Inicialização Rápida (segundos / milissegundos)        |
+ > | Imagens são Grandes (GBs)                      | Imagens Pequenas (MBs ou poucos GBs)                   |
  > | Execução de múltiplos SOs                      | Execução rápida de aplicações isoladas / microserviços |
- > | Usa hypervisores (VirtualBox, VMware, Hyper-V) | Usa container engine (Docker, containerd) |   
+ > | Usa hypervisores (VirtualBox, VMware, Hyper-V) | Usa container engine (Docker, containerd)              |   
 
-D1.6 - Primeiros Comandos 
+D1.6 - Volumes
+  > Volumes no Docker representam a persistência de dados.
+  > Caso o Contêiner não tenha um volume, ao ser parado, tudo será apagado.  
+  > Existem 3 Tipos de Volumes:
+  > | Tipo    | Local  | Persistência                                     | Objetivo                           |
+  > |---------|--------|--------------------------------------------------|------------------------------------|
+  > | Nomeado | Docker | Diretório do Docker no Host                      | Bancos de Dados, Logs e Arquivos   | 
+  > | Bind    | Host   | Arquivo / Diretório a ser espelhado no Contêiner | Desenvolvimento                    |
+  > | tmpfs   | RAM    | Rápido, mas apaga tudo quando para o Contêiner   | Caches, Sessões ou Dados Sensíveis |
+
+D1.7 - Dockerfile
   
-
+  > Arquivo de texto com as instruções de criação de imagem;  
+  > Define o ambiente e o comportamento do contêiner.  
+  > Normalmente usado para:   
+  > - "Exportar" o ambiente para outros servidores / pessoas;  
+  > - Automação e Versionamento de imagens;  
+  > - Padronização de Contêiners;  
+  > - Imagens Customizadas;  
+  > - Testes e Deploys (CI/CD).  
+  
+D1.8 - Primeiros Comandos 
+  
 ```
 docker --version
 
@@ -73,17 +93,7 @@ docker ps
 docker run -dv mysql_data:/var/lib/mysql mysql
 ```
 
-D1.7 - Volumes
-  > Volumes no Docker representam a persistência de dados.  
-  > Quando um contêiner parado, tudo dentro dele é apagado. Para evitar isso, usar um Volume.  
-  > Existem 3 Tipos de Volumes:
-  > |Tipo|Local|Persistência|Objetivo|
-  > |----|-----|------------|--------|
-  >   
-  >
-  >
-
-D1.8 - URLs 
+D1.9 - URLs 
 
   > - Imagens Oficiais: https://hub.docker.com/search?badges=official&type=image
 
