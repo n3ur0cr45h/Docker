@@ -70,10 +70,22 @@ docker run --name mysql_server -dp 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpasswo
 
 docker ps
 
- 
+docker run -dv mysql_data:/var/lib/mysql mysql
 ```
 
+D1.7 - Volumes
+  > Volumes no Docker representam a persistência de dados.  
+  > Quando um contêiner parado, tudo dentro dele é apagado. Para evitar isso, usar um Volume.  
+  > Existem 3 Tipos de Volumes:
+  > |Tipo|Local|Persistência|Objetivo|
+  > |----|-----|------------|--------|
+  >   
+  >
+  >
 
+D1.8 - URLs 
+
+  > - Imagens Oficiais: https://hub.docker.com/search?badges=official&type=image
 
 </div> 
 </details>
