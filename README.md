@@ -79,18 +79,32 @@ D1.8 - Primeiros Comandos
   
 ```
 docker --version
-
 docker run hello-world
 
 docker run --name ubuntu_container -it ubuntu bash
-
 docker run --name nginx_server -d -o 8080:80 nginx
-
 docker run --name mysql_server -dp 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpassword mysql
 
-docker ps
+docker exec -it nginx_server bash
+CTRL P + CTRL Q  # Sair do contêiner sem pará-lo
 
-docker run -dv mysql_data:/var/lib/mysql mysql
+docker ps
+docker ps -a
+
+docker start (contêiner)
+docker stop (contêiner)
+docker rm (contêiner)
+docker logs (contêiner) 
+
+docker search (imagem)
+docker pull (imagem) # Serve também para atualizar a imagem
+docker pull (imagem):(tag) # As tags só podem ser vistas no navegador 
+docker images
+docker rmi (imagem) (imagem2)
+
+
+
+
 ```
 
 D1.9 - URLs 
