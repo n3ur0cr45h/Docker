@@ -86,23 +86,29 @@ docker run --name nginx_server -d -o 8080:80 nginx
 docker run --name mysql_server -dp 93306:3306 -e MYSQL_ROOT_PASSWORD=mysqlpassword mysql
 
 docker exec -it nginx_server bash
-CTRL P + CTRL Q  # Sair do contêiner sem pará-lo
+CTRL P + CTRL Q                 # Sair do contêiner sem pará-lo
 
 docker ps
 docker ps -a
 
-docker start (contêiner)
-docker stop (contêiner)
-docker rm (contêiner)
+docker start (contêiner) (contêiner2) 
+docker stop (contêiner) (contêiner2)
+docker rm (contêiner) (contêiner2)
 docker logs (contêiner) 
 
 docker search (imagem)
-docker pull (imagem) # Serve também para atualizar a imagem
-docker pull (imagem):(tag) # As tags só podem ser vistas no navegador 
+docker pull (imagem)           # Serve também para atualizar a imagem
+docker pull (imagem):(tag)     # As tags só podem ser vistas no hub 
 docker images
 docker rmi (imagem) (imagem2)
 
+docker run -itd --name ubuntu_server -v ubuntu_server_vol:/tmp/ ubuntu
+docker volume ls 
+docker volume prune            # Apaga todos os volumes sem utilização
+docker volume rm (volume)
 
+docker -run -d --name sql_server_tmpfs -e MYSQL_ROOT_PASSWORD=admin --mount type=tmpfs,dst=/tmp,tmpfs-size=50M mysql  
+docker -run -itd --name ubuntu_server_bind -v /tmp/Docker_Teste_Local_WSL:/tmp/ ubuntu  
 
 
 ```
