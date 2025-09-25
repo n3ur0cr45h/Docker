@@ -227,7 +227,7 @@ docker inspect nginx
 <div align="Left"> 
 <br>
 
-3.1 - Escaneamento de Imagens  
+D3.1 - Escaneamento de Imagens  
  > - O Scanner verifica uma imagem docker por pacotes e bibliotecas com vulnerabilidades conhecidas;  
  > - Além disso, também verifica problemas de configuração e licenças de software;  
  > - A análise é feita comparando os dados dos pacotes com o banco de dados de vulnerabilidades;  
@@ -242,7 +242,7 @@ docker inspect nginx
  >   - Atualização de Imagens - ou versões dos pacotes;  
  >   - Integração com CI/CD - Automatizar o escaneamento.
 
-3.2 - Modelo de Segurança do Docker 
+D3.2 - Modelo de Segurança do Docker 
  > - Existem três conceitos que formam o modelo de segurança do Docker:
  >  
  > | Conceito     | Descrição                                                 |
