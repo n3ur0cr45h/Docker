@@ -153,7 +153,70 @@ docker compose --project-name lgtm-stack down
 docker compose ps
 docker compose logs
 
-kompose convert 
+kompose convert
+
+Exemplo de Docker Compose com a Stack Grafana (LGTM):
+
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+    ports:
+      - "3100:3100"
+
+  tempo:
+    image: grafana/tempo:2.4.0
+    container_name: tempo
+    ports:
+      - "3200:3200"
+      - "4317:4317"
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml
+      - ./tempo-data:/tmp/tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+
+  mimir:
+    image: grafana/mimir
+    container_name: mimir
+    ports:
+      - "9009:9009"
+
+Obs.: Para rodar com o Tempo, criar o arquivo "tempo.yaml":
+
+server:
+  http_listen_port: 3200
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc: {}
+ingester:
+  trace_idle_period: 10s
+  max_block_duration: 5m
+compactor:
+  compaction:
+    block_retention: 1h
+metrics_generator:
+  processor:
+    span_metrics:
+      dimensions:
+        - http.method
+        - http.status_code
+storage:
+  trace:
+    backend: local
+    wal:
+      path: /tmp/tempo/wal
+    local:
+      path: /tmp/tempo/traces
+
+
 ````
 
 </div> 
