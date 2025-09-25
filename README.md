@@ -95,7 +95,9 @@ docker ps -a
 docker start (contêiner) (contêiner2) 
 docker stop (contêiner) (contêiner2)
 docker rm (contêiner) (contêiner2)
-docker logs (contêiner) 
+docker logs (contêiner)
+docker stats
+docker stats (contêiner)
 
 docker search (imagem)
 docker pull (imagem)           # Serve também para atualizar a imagem
@@ -195,6 +197,60 @@ D2.3 - Multi-Stage Build
  > - Nesse processo, são retiradas as dependências, ferramentas e bibliotecas, o que deixa mais seguro e leve;  
  > - Deploy mais rápido, pela diminuição de dados;  
  > - Exemplo de Multi-Stage com o Grafana, Prometheus e OpenTelemetry / API, na pasta de "Projetos".   
+
+D2.5 - Limitação de Recursos 
+ > - Limitar os recursos pode ajudar em testes e também no descontrole de Contêineres;
+ > - Além disso, também garante a previsibilidade em ambientes compartilhados.
+```
+docker run --name nginx --memory=100m --cpus="1.0" nginx
+
+services:
+  app:
+    image: nginx
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 100m
+
+docker inspect nginx
+
+```
+
+</div> 
+</details>
+
+----
+
+<details>
+  <summary><b> 3. Avançado</b></summary>
+<div align="Left"> 
+<br>
+
+3.1 - Escaneamento de Imagens  
+ > - O Scanner verifica uma imagem docker por pacotes e bibliotecas com vulnerabilidades conhecidas;  
+ > - Além disso, também verifica problemas de configuração e licenças de software;  
+ > - A análise é feita comparando os dados dos pacotes com o banco de dados de vulnerabilidades;  
+ > - Ferramentas populares:  
+ >   - Trivy - Open Source da Aqua Security;  
+ >   - Docker Scout - Sistema da própria Docker Inc.;   
+ >   - Grype - Open Source da Anchore.
+ >      
+ > - Para boas práticas...  
+ >   - Escanear frequentemente;  
+ >   - Imagens Mínimas - que possuam menos pacotes, logo, menos vulnerabilidades;  
+ >   - Atualização de Imagens - ou versões dos pacotes;  
+ >   - Integração com CI/CD - Automatizar o escaneamento.
+
+3.2 - Modelo de Segurança do Docker 
+ > - Existem três conceitos que formam o modelo de segurança do Docker:
+ >  
+ > | Conceito     | Descrição                                                 |
+ > |--------------|-----------------------------------------------------------|
+ > | NameSpaces   | Isolamento de processos, rede, filesystem                 |
+ > | Capabilities | Reduz privilégios do root no contêiner                    |
+ > | SecComp Prof.| Restringe chamadas do Container ao Kernel                 |
+ 
 
 </div> 
 </details>
