@@ -147,6 +147,9 @@ docker compose up
 docker compose up -d
 docker compose down
 
+docker compose --project-name lgtm-stack up
+docker compose --project-name lgtm-stack down
+
 docker compose ps
 docker compose logs
 
