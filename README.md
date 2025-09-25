@@ -110,13 +110,48 @@ docker volume rm (volume)
 
 docker -run -d --name sql_server_tmpfs -e MYSQL_ROOT_PASSWORD=admin --mount type=tmpfs,dst=/tmp,tmpfs-size=50M mysql  
 docker -run -itd --name ubuntu_server_bind -v /tmp/Docker_Teste_Local_WSL:/tmp/ ubuntu  
-
-
 ```
 
 D1.9 - URLs 
 
   > - Imagens Oficiais: https://hub.docker.com/search?badges=official&type=image
+
+</div> 
+</details>
+
+----
+
+<details>
+  <summary><b> 2. Intermediário</b></summary>
+<div align="Left"> 
+<br>
+
+D2.1 - O Que é o "Docker Compose"?  
+ > - Docker Compose permite definir e gerenciar múltiplos contêineres usando um YAML: docker-compose.yml;
+ > - Se trata de uma orquestração de vários contêineres como um projeto;
+ > - É possível rodar o comando e usar o parâmetro "-f" para usar outro arquivo (que possua outro nome);
+ > - Ao rodar o "up", estar no diretório que contenha o arquivo .yml.
+ >   
+ > | Adições    | Descrição                                                 |
+ > |------------|-----------------------------------------------------------|
+ > | Services   | Define os Contêineres - Cada Serviço é um Contêiner       |
+ > | Volumes    | Define Volumes Persistentes                               |
+ > | Networks   | Define Redes Personalizadas                               |
+ > | Depends_on | Ordem de Inicialização dos Contêineres                    |
+ >   
+ > - O Kubernetes seria um Docker Compose muito mais complexo e em larga escala;
+ > - É possível conveter o docker-compose.yml em arquivos Kubernetes.
+ >   
+````
+docker compose up
+docker compose up -d
+docker compose down
+
+docker compose ps
+docker compose logs
+
+kompose convert 
+````
 
 </div> 
 </details>
