@@ -126,7 +126,37 @@ D1.9 - URLs
 <div align="Left"> 
 <br>
 
-D2.1 - O Que é o "Docker Compose"?  
+D2.1 - Redes | Networks no Docker  
+ > - As redes definem como será a comunicação do Contêiner com os demais Contêineres e Dispositivos.  
+ > - Tipos de Rede:
+ >    
+ > | Rede          | Descrição                                                 |
+ > |---------------|-----------------------------------------------------------|
+ > | Bridge        | Rede Virtual Isolada entre Contêineres no mesmo Host      |
+ > | Host          | Escuta Diretamente nas Portas do Host (Sem NAT)           |
+ > | None          | Sem Acesso à Rede                                         |
+ > | Overlay       | Ambientes Distribuídos (Swarm)                            |
+ > | MacvLan       | Recebe IP como se fosse um Dispositivo Físico na Rede     |
+ > | Custom Bridge | Ordem de Inicialização dos Contêineres                    |
+ >
+````
+ docker network ls
+ docker network create (rede)
+ docker network inspect (rede)
+ docker network rm (rede)
+
+ docker network connect (rede) (contêiner)
+ docker network disconnect (rede) (contêiner)
+
+ docker network create -d bridge (rede bridge)
+ docker network create -d overlay (rede overlay)
+ docker network create -d macvlan (rede macvlan)
+
+ docker run --network bridge nginx 
+ docker run --network host nginx 
+````
+  
+D2.2 - O Que é o "Docker Compose"?  
  > - Docker Compose permite definir e gerenciar múltiplos contêineres usando um YAML: docker-compose.yml;
  > - Se trata de uma orquestração de vários contêineres como um projeto;
  > - É possível rodar o comando e usar o parâmetro "-f" para usar outro arquivo (que possua outro nome);
@@ -147,16 +177,20 @@ docker compose up
 docker compose up -d
 docker compose down
 
-docker compose --project-name lgtm-stack up
-docker compose --project-name lgtm-stack down
-
 docker compose ps
 docker compose logs
 
+docker compose --project-name lgtm-stack up
+docker compose --project-name lgtm-stack down
+
+docker compose --project-name ps
+docker compose --project-name logs
+
 kompose convert
-
-Exemplo de Docker Compose com a Stack Grafana (LGTM):
-
+````
+ > - Exemplo de Docker Compose com o Grafana Stack (LGTM):  
+````  
+  
 services:
   grafana:
     image: grafana/grafana
@@ -171,7 +205,7 @@ services:
       - "3100:3100"
 
   tempo:
-    image: grafana/tempo:2.4.0
+    image: grafana/tempo
     container_name: tempo
     ports:
       - "3200:3200"
@@ -215,8 +249,7 @@ storage:
       path: /tmp/tempo/wal
     local:
       path: /tmp/tempo/traces
-
-
+</details>      
 ````
 
 </div> 
