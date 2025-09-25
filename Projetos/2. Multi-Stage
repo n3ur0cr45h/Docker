@@ -1,0 +1,117 @@
+
+Docker\Multi-Stage\docker-compose.yml
+  api\app.js
+  api\Dockerfile
+  api\package.json
+  prometheus\prometheus.yml 
+  
+
+----
+
+app.js 
+
+import express from 'express';
+import { MeterProvider } from '@opentelemetry/sdk-metrics';
+import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
+
+const app = express();
+const port = 3000;
+
+const exporter = new PrometheusExporter({ port: 9464 }, () => {
+  console.log('Prometheus scrape endpoint: http://localhost:9464/metrics');
+});
+
+const meterProvider = new MeterProvider();
+meterProvider.addMetricReader(exporter);
+const meter = meterProvider.getMeter('api-meter');
+
+const requestCount = meter.createCounter('http_requests_total', {
+  description: 'Contador de requisições HTTP',
+});
+
+app.use((req, res, next) => {
+  requestCount.add(1, { route: req.path });
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.send('Olá! API com observabilidade.');
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+----
+
+Dockerfile
+
+# Etapa 1: Build
+FROM node:18 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --only=production
+COPY . .
+
+# Etapa 2: Imagem final
+FROM node:18-slim
+WORKDIR /app
+COPY --from=builder /app .
+
+EXPOSE 3000 9464
+CMD ["node", "app.js"]
+
+----
+
+package.json
+
+{
+  "name": "api-observabilidade",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "@opentelemetry/sdk-metrics": "^1.21.0",
+    "@opentelemetry/exporter-prometheus": "^0.45.0"
+  }
+}
+
+----
+
+prometheus.yml 
+
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'node_api'
+    static_configs:
+      - targets: ['api:9464']
+
+----
+
+docker-compose.yml 
+
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+      - "9464:9464"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
