@@ -20,10 +20,10 @@
 <br>
 
 D1.1 - O Que é o "Docker"?  
- > Plataforma de software que permite a criar, empacotar e executar aplicações de forma isolada em contêineres. 
+ > - Plataforma de software que permite a criar, empacotar e executar aplicações de forma isolada em contêineres. 
 
 D1.2 - O que são "Contêineres"?  
- > Ambientes isolados, leves e portáteis que garantem a funcionalidade em diferentes sistemas. 
+ > - Ambientes isolados, leves e portáteis que garantem a funcionalidade em diferentes sistemas. 
 
 D1.3 - Componentes do Docker  
  > - Docker Engine: Núcleo do Docker - cria e gerencia contêineres;  
@@ -55,9 +55,10 @@ D1.5 - Diferença entre VM e Contêiner
  > | Usa hypervisores (VirtualBox, VMware, Hyper-V) | Usa container engine (Docker, containerd)              |   
 
 D1.6 - Volumes
-  > Volumes no Docker representam a persistência de dados.
-  > Caso o Contêiner não tenha um volume, ao ser parado, tudo será apagado.  
-  > Existem 3 Tipos de Volumes:
+  > - Volumes no Docker representam a persistência de dados.
+  > - Caso o Contêiner não tenha um volume, ao ser parado, tudo será apagado.  
+  > - Existem 3 Tipos de Volumes:
+  >    
   > | Tipo    | Local  | Persistência                                     | Objetivo                           |
   > |---------|--------|--------------------------------------------------|------------------------------------|
   > | Nomeado | Docker | Diretório do Docker no Host                      | Bancos de Dados, Logs e Arquivos   | 
@@ -66,14 +67,14 @@ D1.6 - Volumes
 
 D1.7 - Dockerfile
   
-  > Arquivo de texto com as instruções de criação de imagem;  
-  > Define o ambiente e o comportamento do contêiner.  
-  > Normalmente usado para:   
-  > - "Exportar" o ambiente para outros servidores / pessoas;  
-  > - Automação e Versionamento de imagens;  
-  > - Padronização de Contêiners;  
-  > - Imagens Customizadas;  
-  > - Testes e Deploys (CI/CD).  
+  > - Arquivo de texto com as instruções de criação de imagem;  
+  > - Define o ambiente e o comportamento do contêiner.  
+  > - Normalmente usado para:   
+  >   - "Exportar" o ambiente para outros servidores / pessoas;  
+  >   - Automação e Versionamento de imagens;  
+  >   - Padronização de Contêiners;  
+  >   - Imagens Customizadas;  
+  >   - Testes e Deploys (CI/CD).  
   
 D1.8 - Primeiros Comandos 
   
