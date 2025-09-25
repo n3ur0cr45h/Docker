@@ -170,8 +170,8 @@ D2.2 - O Que é o "Docker Compose"?
  > | Depends_on | Ordem de Inicialização dos Contêineres                    |
  >   
  > - O Kubernetes seria um Docker Compose muito mais complexo e em larga escala;
- > - É possível conveter o docker-compose.yml em arquivos Kubernetes.
- >   
+ > - É possível conveter o docker-compose.yml em arquivos Kubernetes;
+ > - Exemplo de Docker Compose com o Grafana Stack (LGTM) na pasta de "Projetos".    
 ````
 docker compose up
 docker compose up -d
@@ -188,69 +188,13 @@ docker compose --project-name logs
 
 kompose convert
 ````
- > - Exemplo de Docker Compose com o Grafana Stack (LGTM):  
-````  
-  
-services:
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "3000:3000"
-
-  loki:
-    image: grafana/loki
-    container_name: loki
-    ports:
-      - "3100:3100"
-
-  tempo:
-    image: grafana/tempo
-    container_name: tempo
-    ports:
-      - "3200:3200"
-      - "4317:4317"
-    volumes:
-      - ./tempo.yaml:/etc/tempo.yaml
-      - ./tempo-data:/tmp/tempo
-    command: [ "-config.file=/etc/tempo.yaml" ]
-
-  mimir:
-    image: grafana/mimir
-    container_name: mimir
-    ports:
-      - "9009:9009"
-
-Obs.: Para rodar com o Tempo, criar o arquivo "tempo.yaml":
-
-server:
-  http_listen_port: 3200
-distributor:
-  receivers:
-    otlp:
-      protocols:
-        grpc: {}
-ingester:
-  trace_idle_period: 10s
-  max_block_duration: 5m
-compactor:
-  compaction:
-    block_retention: 1h
-metrics_generator:
-  processor:
-    span_metrics:
-      dimensions:
-        - http.method
-        - http.status_code
-storage:
-  trace:
-    backend: local
-    wal:
-      path: /tmp/tempo/wal
-    local:
-      path: /tmp/tempo/traces
-</details>      
-````
+   
+D2.3 - Multi-Stage Build  
+ > - Técnica para criar imagens Docker otimizadas e Menores;  
+ > - Separa o Processo de Construção (Build), do processo de Execução (Runtime);  
+ > - Nesse processo, são retiradas as dependências, ferramentas e bibliotecas, o que deixa mais seguro e leve;  
+ > - Deploy mais rápido, pela diminuição de dados;  
+ > - Exemplo de Multi-Stage com o Grafana, Prometheus e OpenTelemetry / API, na pasta de "Projetos".   
 
 </div> 
 </details>
