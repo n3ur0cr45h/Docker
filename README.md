@@ -250,7 +250,33 @@ D3.2 - Modelo de Segurança do Docker
  > | NameSpaces   | Isolamento de processos, rede, filesystem                 |
  > | Capabilities | Reduz privilégios do root no contêiner                    |
  > | SecComp Prof.| Restringe chamadas do Container ao Kernel                 |
- 
+
+D3.3 - Servidor de Registro
+  > - "Registry" de imagens Docker controlado por uma pessoa / empresa;
+  > - Nisso, existe mais segurança, pois não terá a exposição do Docker Hub.
+  > - Exemplos:
+  >   - Docker Hub Private Repo;
+  >   - GitHub Container Registry;
+  >   - Amazon ECR;
+  >   - Harbor.   
+
+D3.4 - Swarm
+  > - Orquestrador nativo do Docker;
+  > - Cria e gerencia cluster de contêineres, integrado ao Docker CLI.
+  > - Objetivos:
+  >   - Rodar contêineres em múltiplos nós / hosts;
+  >   - Replicação de Serviços;
+  >   - Deploys e Updates controlados;
+  >   - Balanceamento de Requisições entre Contâineres;
+  >   - Fail Over automático.
+  > - Arquitetura:
+  >   
+  > | Componente   | Função                                                    |
+  > |--------------|-----------------------------------------------------------|
+  > | Manager      | Coordena o Cluster                                        |
+  > | Worker       | Executa os Contêineres conforme instruções do Manager     |
+  > | Serviços     | Qual imagem usar, quantas réplicas, e comportamento       |
+  > | Tarefas      | Contêiner Específico                                      |     
 
 </div> 
 </details>
