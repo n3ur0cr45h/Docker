@@ -288,7 +288,7 @@ D3.4 - Swarm
 <div align="Left"> 
 <br>
 
-
+(Docker Deep Dive - Capítulo 10)
 
 </div> 
 </details>
