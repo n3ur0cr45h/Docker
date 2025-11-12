@@ -312,6 +312,12 @@ D3.4 - Swarm
 <div align="Left"> 
 <br>
 
+| ID | Ferramentas | Descrição | Link |
+|----|-------------|-----------|------|
+| P1  | Docker - OTel - Grafana | Visualização de Métricas de MSSQL e Oracle DB | <a href="https://github.com/n3ur0cr45h/Projetos/tree/main/Docker/1.%20Compose%20-%20Banco%20de%20Dados"> Observabilidade DBs </a> |
+| P2  | Docker - OTel - Grafana | Visualização de Métricas do Web Server        | <a href="https://github.com/n3ur0cr45h/Projetos/tree/main/Docker/2.%20Compose%20-%20Apache%20Web%20Server"> Observabilidade Web Server </a> |
+| P3  | Docker - OTel - Grafana | Visualização de Métricas do Apache            | <a href="https://github.com/n3ur0cr45h/Projetos/tree/main/Docker/3.%20Compose%20-%20Kafka"> Observabilidade Kafka </a> |
+
 
 
 </div> 
