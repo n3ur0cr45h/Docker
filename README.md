@@ -284,18 +284,6 @@ D3.4 - Swarm
 ----
 
 <details>
-  <summary><b> 4. Docker + IA</b></summary>
-<div align="Left"> 
-<br>
-
-(Docker Deep Dive - Capítulo 10)
-
-</div> 
-</details>
-
-----
-
-<details>
   <summary><b> 5. Boas Práticas</b></summary>
 <div align="Left"> 
 <br>
